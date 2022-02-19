@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeskAssistant.Models.StickyNote;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,12 @@ namespace DeskAssistant.Windows.NoteWindows
     /// </summary>
     public partial class Note : Window
     {
+        NotePosition thisWindowPosition = new NotePosition();
+
+        // Object
+        public NoteCard noteCard = new NoteCard();
+
+
         public Note()
         {
             InitializeComponent();
@@ -31,7 +38,7 @@ namespace DeskAssistant.Windows.NoteWindows
 
         private void btnCloseNote_Click(object sender, RoutedEventArgs e)
         {
-
+            this.Close();
         }
 
         private void txtNote_TextChanged(object sender, TextChangedEventArgs e)
@@ -43,5 +50,16 @@ namespace DeskAssistant.Windows.NoteWindows
         {
 
         }
+
+        #region This window positioning
+        private void Grid_MouseDow_2(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+
+            thisWindowPosition.fpSetYPos(this.Left);
+            thisWindowPosition.fpSetYPos(this.Top);
+        }
+        #endregion 
     }
 }

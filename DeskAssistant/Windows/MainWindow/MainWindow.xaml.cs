@@ -24,13 +24,11 @@ namespace DeskAssistant
     public partial class MainWindow : Window
     {
         // this form position parameters
-        WindowPosition thisFormPosition = new WindowPosition();
+        WindowPosition thisWindowPosition = new WindowPosition();
 
-        // Windows objects
-        Note noteWindow = new Note();
+        // Windows objects list
+        List <Note> noteWindowList = new List<Note>();
 
-        // Data objects
-        List<NoteCard> noteCardsList = new List<NoteCard>();
 
         public MainWindow()
         {
@@ -41,8 +39,15 @@ namespace DeskAssistant
 
         private void btnAddNote_Click(object sender, RoutedEventArgs e)
         {
-            noteWindow.Show();
+            int _id = RenderId();
 
+            Note note = new Note();
+            note.noteCard.Id = _id; // set new id for note window and card
+            noteWindowList.Add(note);
+
+            int index = noteWindowList.IndexOf(note);
+
+            noteWindowList[index].Show();
         }
 
         private void btnCloseAndShowNotes_Click(object sender, RoutedEventArgs e)
@@ -75,10 +80,19 @@ namespace DeskAssistant
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
 
-            thisFormPosition.fpSetYPos(this.Left);
-            thisFormPosition.fpSetYPos(this.Top);
+            thisWindowPosition.fpSetYPos(this.Left);
+            thisWindowPosition.fpSetYPos(this.Top);
         }
 
+
+
+        // Rendering Id number
+        private int RenderId()
+        {
+            Random random = new Random();
+            int _id = random.Next(0, 10000);
+            return _id;
+        }
 
 
     }
