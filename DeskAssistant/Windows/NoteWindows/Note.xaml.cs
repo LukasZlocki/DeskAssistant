@@ -23,5 +23,25 @@ namespace DeskAssistant.Windows.NoteWindows
         {
             InitializeComponent();
         }
+
+        private void RectangleTitle_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void btnCloseNote_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void txtNote_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void InstantSaveText(object sender, KeyEventArgs e)
+        {
+
+        }
     }
 }

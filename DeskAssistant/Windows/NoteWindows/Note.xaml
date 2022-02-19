@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DeskAssistant.Windows.NoteWindows"
         mc:Ignorable="d"
-        Title="Note" Height="250" Width="325" WindowStyle="None" AllowsTransparency="True" Background="Transparent" ShowInTaskbar="False">
+        Title="NoteIt" Height="250" Width="325" WindowStyle="None" AllowsTransparency="True" Background="Transparent" ShowInTaskbar="False">
 
-    <Grid x:Name="Note" Margin="0,0,0,0" HorizontalAlignment="Left" Width="325" Height="255" VerticalAlignment="Top" >
+    <Grid x:Name="NoteGrid" Margin="0,0,0,0" HorizontalAlignment="Left" Width="325" Height="255" VerticalAlignment="Top" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
