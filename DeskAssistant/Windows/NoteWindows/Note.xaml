@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="NoteIt" Height="250" Width="325" WindowStyle="None" AllowsTransparency="True" Background="Transparent" ShowInTaskbar="False">
 
-    <Grid x:Name="NoteGrid" Margin="0,0,0,0" HorizontalAlignment="Left" Width="325" Height="255" VerticalAlignment="Top" >
+    <Grid x:Name="NoteGrid" MouseDown="Grid_MouseDow_2" Margin="0,0,0,0" HorizontalAlignment="Left" Width="325" Height="255" VerticalAlignment="Top" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
