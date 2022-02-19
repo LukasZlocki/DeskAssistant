@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DeskAssistant.Models.MenuWindow;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,9 @@ namespace DeskAssistant
     /// </summary>
     public partial class MainWindow : Window
     {
+        // this form position parameters
+        WindowPosition thisFormPosition = new WindowPosition();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -47,14 +51,24 @@ namespace DeskAssistant
 
         }
 
-        private void Grid_MouseDown_1(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+
+
+        // Moving This form by mouse    
+        private void Grid_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+
+            thisFormPosition.fpSetYPos(this.Left);
+            thisFormPosition.fpSetYPos(this.Top);
+        }
+
+
+
     }
 }
