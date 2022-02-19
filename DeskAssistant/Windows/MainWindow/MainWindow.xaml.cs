@@ -1,4 +1,6 @@
 ﻿using DeskAssistant.Models.MenuWindow;
+using DeskAssistant.Models.StickyNote;
+using DeskAssistant.Windows.NoteWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +26,12 @@ namespace DeskAssistant
         // this form position parameters
         WindowPosition thisFormPosition = new WindowPosition();
 
+        // Windows objects
+        Note noteWindow = new Note();
+
+        // Data objects
+        List<NoteCard> noteCardsList = new List<NoteCard>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -33,6 +41,7 @@ namespace DeskAssistant
 
         private void btnAddNote_Click(object sender, RoutedEventArgs e)
         {
+            noteWindow.Show();
 
         }
 
