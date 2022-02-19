@@ -24,5 +24,37 @@ namespace DeskAssistant
         {
             InitializeComponent();
         }
+
+
+
+        private void btnAddNote_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCloseAndShowNotes_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAddTask_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCloseAndShowTasks_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Grid_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
