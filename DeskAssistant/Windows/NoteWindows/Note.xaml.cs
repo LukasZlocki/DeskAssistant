@@ -1,4 +1,5 @@
 ﻿using DeskAssistant.Models.StickyNote;
+using DeskAssistant.Services.Note_Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,9 @@ namespace DeskAssistant.Windows.NoteWindows
     /// </summary>
     public partial class Note : Window
     {
-        NotePosition thisWindowPosition = new NotePosition();
+        // Service
+        private NoteService _noteService = new NoteService();
 
-        // Object
         public NoteCard noteCard = new NoteCard();
 
 
@@ -46,10 +47,15 @@ namespace DeskAssistant.Windows.NoteWindows
 
         }
 
+        #region Sving txt instantly
         private void InstantSaveText(object sender, KeyEventArgs e)
         {
-
+            // TODO: write link to service to write text by class id
+            noteCard.NoteText = txtNote.Text;
+            _noteService.UpdateNote(noteCard);
         }
+        #endregion
+
 
         #region This window positioning
         private void Grid_MouseDow_2(object sender, MouseButtonEventArgs e)
@@ -57,9 +63,12 @@ namespace DeskAssistant.Windows.NoteWindows
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
 
-            thisWindowPosition.fpSetYPos(this.Left);
-            thisWindowPosition.fpSetYPos(this.Top);
+            // TODO: set position in noteCard object
+            //.fpSetYPos(this.Left);
+            //thisWindowPosition.fpSetYPos(this.Top);
         }
         #endregion 
+
+
     }
 }

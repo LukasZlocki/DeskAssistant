@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeskAssistant", "DeskAssistant\DeskAssistant.csproj", "{BD814620-4039-4363-BAB5-2437711E16E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeskAssistant", "DeskAssistant\DeskAssistant.csproj", "{BD814620-4039-4363-BAB5-2437711E16E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models.DeskAssistant", "Models.DeskAssistant\Models.DeskAssistant.csproj", "{EBEF745D-88BF-43ED-BB4D-5FDFB3704928}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services.DeskAssistant", "Services.DeskAssistant\Services.DeskAssistant.csproj", "{D88D9D0D-7EAF-42A4-8567-FABC00F849DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{BD814620-4039-4363-BAB5-2437711E16E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD814620-4039-4363-BAB5-2437711E16E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD814620-4039-4363-BAB5-2437711E16E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBEF745D-88BF-43ED-BB4D-5FDFB3704928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBEF745D-88BF-43ED-BB4D-5FDFB3704928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBEF745D-88BF-43ED-BB4D-5FDFB3704928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBEF745D-88BF-43ED-BB4D-5FDFB3704928}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D88D9D0D-7EAF-42A4-8567-FABC00F849DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D88D9D0D-7EAF-42A4-8567-FABC00F849DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D88D9D0D-7EAF-42A4-8567-FABC00F849DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D88D9D0D-7EAF-42A4-8567-FABC00F849DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
