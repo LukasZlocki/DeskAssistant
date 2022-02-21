@@ -7,4 +7,9 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Models.DeskAssistant\Models.DeskAssistant.csproj" />
+    <ProjectReference Include="..\Services.DeskAssistant\Services.DeskAssistant.csproj" />
+  </ItemGroup>
+
 </Project>
