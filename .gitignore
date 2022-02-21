@@ -2,4 +2,7 @@
 .vs/
 DeskAssistant/bin
 DeskAssistant/obj
-
+Models.DeskAssistant/bin
+Models.DeskAssistant/obj
+Services.DeskAssistant/bin
+Services.DeskAssistant/obj
