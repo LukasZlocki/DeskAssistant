@@ -8,22 +8,30 @@ namespace DeskAssistant.Services.Note_Service
     {
         private readonly DbEngine _dbEngine = new DbEngine();
 
+        // CREATE
+        public void CreateNote(NoteCard note)
+        {
+            _dbEngine.CreateNoteInDatabase(note);
+        }
 
+        // READ
         public IEnumerable<NoteCard> GetAllNotes()
         {
             throw new NotImplementedException();
         }
 
+        // UPDATE
         public void UpdateNote(NoteCard note)
         {
-            _dbEngine.WriteNoteToFile(note);
+            _dbEngine.UpdateNoteInDatabase(note);
         }
 
+        // DELETE
         public void DeleteNote(NoteCard note)
         {
             throw new NotImplementedException();
         }
 
-
+  
     }
 }
