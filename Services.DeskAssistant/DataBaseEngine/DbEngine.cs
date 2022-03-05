@@ -76,7 +76,7 @@ namespace DeskAssistant.Services.DataBaseEngine
             return _notelist;
         }
 
-        // TODO : implement realated path for file - path inside installed app.
+
         private void SaveAllNotesToDatabase(List<NoteCard> notesList)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<NoteCard>));
@@ -84,6 +84,8 @@ namespace DeskAssistant.Services.DataBaseEngine
             xmlSerializer.Serialize(tw, notesList);
             tw.Close();
         }
+
+
 
     }
 }
