@@ -10,6 +10,7 @@ namespace DeskAssistant.Services.DataBaseEngine
 
         public void UpdateNoteInDatabase(NoteCard  _note)
         {
+            bool _noteUpdated = false;
             List<NoteCard> _notesList = new List<NoteCard>();
             _notesList = ReadNotesListFromFile();
             foreach (var note in _notesList)
@@ -17,8 +18,17 @@ namespace DeskAssistant.Services.DataBaseEngine
                 if (note.Id == _note.Id)
                 {
                     note.NoteText = _note.NoteText;
+                    note.notePossition = _note.notePossition;
+                    _noteUpdated = true;
                 }
             }
+
+            // if no note with id then add note to lis
+            if (_noteUpdated == false)
+            {
+                _notesList.Add(_note);
+            }
+
             SaveAllNotesToDatabase(_notesList);
         }
 

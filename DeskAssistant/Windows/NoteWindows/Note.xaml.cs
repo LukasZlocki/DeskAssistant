@@ -39,11 +39,11 @@ namespace DeskAssistant.Windows.NoteWindows
         #region Sving txt instantly
         private void InstantSaveText(object sender, KeyEventArgs e)
         {
-            // TODO: write link to service to write text by class id
             NotePosition np = new NotePosition();
             noteCard.notePossition = np; // add possition of note card
 
             noteCard.NoteText = txtNote.Text;
+            
             _noteService.UpdateNote(noteCard);
         }
         #endregion
@@ -55,9 +55,11 @@ namespace DeskAssistant.Windows.NoteWindows
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
 
-            // TODO: set position in noteCard object
-            //.fpSetYPos(this.Left);
-            //thisWindowPosition.fpSetYPos(this.Top);
+            // TODO: code setting position in noteCard object with instant writing it to file.
+            noteCard.notePossition.Xpos = this.Left;
+            noteCard.notePossition.Ypos = this.Top;
+
+            _noteService.UpdateNote(noteCard);
         }
         #endregion 
 
