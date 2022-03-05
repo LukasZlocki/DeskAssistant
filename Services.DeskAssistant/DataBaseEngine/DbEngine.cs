@@ -1,23 +1,87 @@
 ﻿using DeskAssistant.Models.StickyNote;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace DeskAssistant.Services.DataBaseEngine
 {
     public class DbEngine
     {
-        public void WriteNoteToFile(NoteCard _note)
+        private static string NOTE_CARD_DB_FILE = "dbNoteCrd.xml";
+
+
+        public void UpdateNoteInDatabase(NoteCard  _note)
         {
-            // ToDo: Step 1: Code object note writing to file 
-            // ToDo: Step 2: Object note write to file by id
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(NoteCard));
-            TextWriter tw = new StreamWriter(@"c:\test.xml");
-            xmlSerializer.Serialize(tw, _note);
+            List<NoteCard> _notesList = new List<NoteCard>();
+            _notesList = ReadNotesListFromFile();
+            foreach (var note in _notesList)
+            {
+                if (note.Id == _note.Id)
+                {
+                    note.NoteText = _note.NoteText;
+                }
+            }
+            SaveAllNotesToDatabase(_notesList);
+        }
+
+
+        public void CreateNoteInDatabase(NoteCard _note)
+        {
+            // read all data from db
+            List<NoteCard> _notesList = new List<NoteCard>();
+            _notesList = ReadNotesListFromFile();
+
+            if (_notesList.Count == 0) // list is empty
+            {
+                _notesList.Add(_note);
+            }
+            else // no _noteList exist creating new one and adding _note
+            {
+                if (_notesList.Find(i => i.Id == _note.Id) is null) // No note with id detected in list
+                {
+                    _notesList.Add(_note);
+                }
+                else
+                {
+                    foreach(var note in _notesList)
+                    {
+                        if(note.Id == _note.Id)
+                        {
+                            note.NoteText = _note.NoteText;
+                        }
+                    }
+                }
+            }
+            SaveAllNotesToDatabase(_notesList);
+        }
+
+
+        public List<NoteCard> ReadNotesListFromFile()
+        {
+            List<NoteCard> _notelist = new List<NoteCard>();
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<NoteCard>));
+            try
+            {
+                TextReader tr = new StreamReader(NOTE_CARD_DB_FILE);
+                _notelist = (List<NoteCard>)xmlSerializer.Deserialize(tr);
+                tr.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("No data base found. Creating new data base.");
+            }
+            if (_notelist is null)
+            {
+                _notelist = new List<NoteCard>();
+            }
+
+            return _notelist;
+        }
+
+        // TODO : implement realated path for file - path inside installed app.
+        private void SaveAllNotesToDatabase(List<NoteCard> notesList)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<NoteCard>));
+            TextWriter tw = new StreamWriter(NOTE_CARD_DB_FILE);
+            xmlSerializer.Serialize(tw, notesList);
             tw.Close();
         }
 
