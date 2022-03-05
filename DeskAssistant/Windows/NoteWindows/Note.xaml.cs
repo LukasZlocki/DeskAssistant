@@ -15,8 +15,7 @@ namespace DeskAssistant.Windows.NoteWindows
         private NoteService _noteService = new NoteService();
 
         public NoteCard noteCard = new NoteCard();
-
-
+        
         public Note()
         {
             InitializeComponent();
@@ -41,6 +40,9 @@ namespace DeskAssistant.Windows.NoteWindows
         private void InstantSaveText(object sender, KeyEventArgs e)
         {
             // TODO: write link to service to write text by class id
+            NotePosition np = new NotePosition();
+            noteCard.notePossition = np; // add possition of note card
+
             noteCard.NoteText = txtNote.Text;
             _noteService.UpdateNote(noteCard);
         }
