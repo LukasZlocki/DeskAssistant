@@ -25,7 +25,7 @@ namespace DeskAssistant
         {
             InitializeComponent();
 
-            // ToDo : code loading note objects and start up note windows
+            // initializing
             NoteWindowsInitializer();
         }
 
