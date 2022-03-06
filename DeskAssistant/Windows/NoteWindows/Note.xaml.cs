@@ -14,12 +14,35 @@ namespace DeskAssistant.Windows.NoteWindows
         // Service
         private NoteService _noteService = new NoteService();
 
-        public NoteCard noteCard = new NoteCard();
+        public NoteCard _noteCard = new NoteCard();
         
+        // constructor #1
+        public Note(NoteCard note)
+        {
+            _noteCard = note;
+
+            InitializeComponent();
+            
+            NoteWindowInit(_noteCard);
+        }
+        
+        // constructor #2
         public Note()
         {
             InitializeComponent();
         }
+
+
+        public void NoteWindowInit(NoteCard _note)
+        {
+            // set text
+            txtNote.Text = _note.NoteText;
+
+            // set window position
+            this.Top = _note.notePossition.Ypos;
+            this.Left = _note.notePossition.Xpos;
+        }
+
 
         private void RectangleTitle_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -36,30 +59,30 @@ namespace DeskAssistant.Windows.NoteWindows
 
         }
 
-        #region Sving txt instantly
+        #region Saving txt instantly
         private void InstantSaveText(object sender, KeyEventArgs e)
         {
             NotePosition np = new NotePosition();
-            noteCard.notePossition = np; // add possition of note card
+            _noteCard.notePossition = np; // add possition of note card
 
-            noteCard.NoteText = txtNote.Text;
+            _noteCard.NoteText = txtNote.Text;
             
-            _noteService.UpdateNote(noteCard);
+            _noteService.UpdateNote(_noteCard);
         }
         #endregion
 
 
         #region This window positioning
+        //  get position of noteCard window and write it to file.
         private void Grid_MouseDow_2(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
 
-            // TODO: code setting position in noteCard object with instant writing it to file.
-            noteCard.notePossition.Xpos = this.Left;
-            noteCard.notePossition.Ypos = this.Top;
+            _noteCard.notePossition.Xpos = this.Left;
+            _noteCard.notePossition.Ypos = this.Top;
 
-            _noteService.UpdateNote(noteCard);
+            _noteService.UpdateNote(_noteCard);
         }
         #endregion 
 

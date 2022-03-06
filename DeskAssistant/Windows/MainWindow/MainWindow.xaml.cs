@@ -1,4 +1,6 @@
 ﻿using DeskAssistant.Models.MenuWindow;
+using DeskAssistant.Models.StickyNote;
+using DeskAssistant.Services.Note_Service;
 using DeskAssistant.Windows.NoteWindows;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,9 @@ namespace DeskAssistant
         public MainWindow()
         {
             InitializeComponent();
+
+            // ToDo : code loading note objects and start up note windows
+            NoteWindowsInitializer();
         }
 
 
@@ -31,7 +36,7 @@ namespace DeskAssistant
             int _id = RenderId();
 
             Note note = new Note();
-            note.noteCard.Id = _id; // set new id for note window and card
+            note._noteCard.Id = _id; // set new id for note window and card
             noteWindowList.Add(note);
 
             int index = noteWindowList.IndexOf(note);
@@ -74,14 +79,34 @@ namespace DeskAssistant
         }
 
 
-
         // Rendering Id number
         private int RenderId()
         {
+            // ToDo : check id nb to avoid duplication of ids 
             Random random = new Random();
             int _id = random.Next(0, 10000);
             return _id;
         }
+
+
+        #region Initializing of windows
+        public void NoteWindowsInitializer()
+        {
+            NoteService _nService = new NoteService();
+            List<NoteCard> _noteList = new List<NoteCard>();
+
+            // load all notes
+            _noteList = _nService.GetAllNotes();
+
+            foreach(var note in _noteList)
+            {
+                Note _noteWindow = new Note(note);
+                _noteWindow.Show();
+            }
+            
+        }
+
+        #endregion
 
 
     }
