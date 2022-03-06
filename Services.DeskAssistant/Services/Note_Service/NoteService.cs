@@ -15,7 +15,7 @@ namespace DeskAssistant.Services.Note_Service
         }
 
         // READ
-        public IEnumerable<NoteCard> GetAllNotes()
+        public List<NoteCard> GetAllNotes()
         {
             throw new NotImplementedException();
         }

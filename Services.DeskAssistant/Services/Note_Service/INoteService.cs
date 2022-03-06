@@ -8,7 +8,7 @@ namespace DeskAssistant.Services.Note_Service
         public void CreateNote(NoteCard note);
         
         // READ
-        public IEnumerable<NoteCard> GetAllNotes();
+        public List<NoteCard> GetAllNotes();
 
 
         // UPDATE
