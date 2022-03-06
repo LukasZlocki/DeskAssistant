@@ -17,7 +17,8 @@ namespace DeskAssistant.Services.Note_Service
         // READ
         public List<NoteCard> GetAllNotes()
         {
-            throw new NotImplementedException();
+            var service = _dbEngine.ReadNotesListFromFile();
+            return service;
         }
 
         // UPDATE
