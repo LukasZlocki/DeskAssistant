@@ -84,7 +84,50 @@ namespace DeskAssistant.Windows.NoteWindows
 
             _noteService.UpdateNote(_noteCard);
         }
-        #endregion 
+
+        #endregion
+
+
+
+        #region Buttons - change font size
+
+        // ToDo: Code buttons with font size
+
+        private void btnLetterDown_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnLetterUp_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+
+        #region Buttons - change note colour
+        // ToDo: Code buttons to change note color
+
+        private void btnColorGreen_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnColorYellow_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnColorBlue_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnColorOrange_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
 
 
     }
