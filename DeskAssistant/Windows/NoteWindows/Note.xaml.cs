@@ -20,6 +20,7 @@ namespace DeskAssistant.Windows.NoteWindows
         public Note(NoteCard note)
         {
             _noteCard = note;
+            noteCardNullCheck(ref _noteCard);
 
             InitializeComponent();
             
@@ -35,12 +36,17 @@ namespace DeskAssistant.Windows.NoteWindows
 
         public void NoteWindowInit(NoteCard _note)
         {
+            // set fontSize
+            txtNote.FontSize = _note.noteProperty.FontSize;
+
             // set text
             txtNote.Text = _note.NoteText;
 
             // set window position
             this.Top = _note.notePossition.Ypos;
             this.Left = _note.notePossition.Xpos;
+
+            
         }
 
 
@@ -59,16 +65,22 @@ namespace DeskAssistant.Windows.NoteWindows
 
         }
 
-        #region Saving txt instantly
+        #region Saving Note Card instantly
         private void InstantSaveText(object sender, KeyEventArgs e)
         {
             NotePosition np = new NotePosition();
             _noteCard.notePossition = np; // add possition of note card
-
+            
             _noteCard.NoteText = txtNote.Text;
             
-            _noteService.UpdateNote(_noteCard);
+            SaveNoteCardToDatabase(_noteCard);
         }
+
+        private void SaveNoteCardToDatabase(NoteCard noteCard)
+        {
+            _noteService.UpdateNote(noteCard);
+        }
+
         #endregion
 
 
@@ -82,7 +94,7 @@ namespace DeskAssistant.Windows.NoteWindows
             _noteCard.notePossition.Xpos = this.Left;
             _noteCard.notePossition.Ypos = this.Top;
 
-            _noteService.UpdateNote(_noteCard);
+            SaveNoteCardToDatabase(_noteCard);
         }
 
         #endregion
@@ -95,13 +107,20 @@ namespace DeskAssistant.Windows.NoteWindows
 
         private void btnLetterDown_Click(object sender, RoutedEventArgs e)
         {
+            SetFontSizeOfNote("DOWN");
+            RefreshScreen(_noteCard);
+            SaveNoteCardToDatabase(_noteCard);
 
         }
 
         private void btnLetterUp_Click(object sender, RoutedEventArgs e)
         {
-            
+            SetFontSizeOfNote("UP");
+            RefreshScreen(_noteCard);
+            SaveNoteCardToDatabase(_noteCard);
         }
+
+        #endregion
 
 
         #region Buttons - change note colour
@@ -128,6 +147,54 @@ namespace DeskAssistant.Windows.NoteWindows
         }
 
         #endregion
+
+
+
+        #region Set Font Size
+
+        private void SetFontSizeOfNote(string command)
+        {
+            double _changedFontSize = 0.0;
+            double _presentFontSize = _noteCard.noteProperty.FontSize;
+            double _fontIncrement = _noteCard.noteProperty.GetFontIncrement();
+
+            if (command == "UP")
+            {
+                _changedFontSize = _presentFontSize + _fontIncrement;
+            }
+            if (command == "DOWN")
+            {
+                _changedFontSize = _presentFontSize - _fontIncrement;
+            }
+            _noteCard.noteProperty.FontSize = _changedFontSize;
+        }
+
+        #endregion
+
+        private void RefreshScreen(NoteCard note)
+        {
+            txtNote.Text = note.NoteText;
+            txtNote.FontSize = note.noteProperty.FontSize;
+
+        }
+
+        // null handling
+        private void noteCardNullCheck(ref NoteCard note)
+        {
+            if (note.notePossition == null)
+            {
+                note.notePossition = new NotePosition();
+                note.notePossition.Xpos = 0.0;
+                note.notePossition.Ypos = 0.0;
+            }
+
+            if (note.noteProperty == null)
+            {
+                note.noteProperty = new NoteProperty();
+                note.noteProperty.FontSize = 12.0;
+            }
+
+        }
 
 
     }

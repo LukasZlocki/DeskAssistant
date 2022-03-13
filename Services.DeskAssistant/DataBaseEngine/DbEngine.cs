@@ -19,6 +19,7 @@ namespace DeskAssistant.Services.DataBaseEngine
                 {
                     note.NoteText = _note.NoteText;
                     note.notePossition = _note.notePossition;
+                    note.noteProperty = _note.noteProperty;
                     _noteUpdated = true;
                 }
             }

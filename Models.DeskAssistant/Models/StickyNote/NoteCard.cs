@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public string NoteText { get; set; }
         public NotePosition notePossition { get; set; }
-        // NoteProperty noteProperty { get; set; }
+        public NoteProperty noteProperty { get; set; }
     }
 }

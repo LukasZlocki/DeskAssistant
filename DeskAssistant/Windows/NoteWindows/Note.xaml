@@ -10,7 +10,8 @@
     <Grid x:Name="NoteGrid" MouseDown="Grid_MouseDow_2" Margin="0,0,0,0" HorizontalAlignment="Left" Width="325" Height="255" VerticalAlignment="Top" >
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="12*"/>
@@ -19,7 +20,7 @@
         </Grid.RowDefinitions>
 
 
-        <StackPanel Grid.Row="0" Margin="0,0,0,191" Grid.RowSpan="2">
+        <StackPanel Grid.Row="0" Margin="0,0,0,191" Grid.RowSpan="2" Grid.ColumnSpan="3" >
             <Rectangle x:Name="RectangleTitle" Height="30" RadiusY="5" RadiusX="5" Stroke="Black" StrokeThickness="0" VerticalAlignment="Top" MouseDown="RectangleTitle_MouseDown" Grid.ColumnSpan="1" Grid.Row="0" >
                 <Rectangle.Fill>
                     <SolidColorBrush>
@@ -31,10 +32,8 @@
             </Rectangle>
         </StackPanel>
 
-        <StackPanel Grid.Row="1">
-
-
-            <Rectangle x:Name="RectangleMain" Height="214"  RadiusX="5" RadiusY="5" Opacity="0.75" HorizontalAlignment="Center" Grid.Row="1" Width="321">
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3">
+            <Rectangle x:Name="RectangleMain" Height="210"  RadiusX="5" RadiusY="5" Opacity="0.85" HorizontalAlignment="Center" Grid.Row="1"  Width="325" >
                 <Rectangle.Fill>
                     <SolidColorBrush>
                         <SolidColorBrush.Color>
@@ -45,10 +44,21 @@
             </Rectangle>
         </StackPanel>
 
-        <StackPanel Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <Button x:Name="btnCloseNote" Content="x" Height="20" Width="20" Opacity="0.4" Background="#b11515" FontWeight="Bold" Click="btnCloseNote_Click"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="right" >
+            <Button x:Name="btnCloseNote" Content="" Height="15" Width="15" Opacity="0.4" Background="#b11515" Click="btnCloseNote_Click" Margin="0,0,10,0" />
         </StackPanel>
-        
-        <TextBox x:Name="txtNote" HorizontalAlignment="Center" Height="Auto" Width="325" TextWrapping="Wrap" Text="TextBox"  Background="{x:Null}" Foreground="#FF80DE5D" FontSize="18" AcceptsReturn="true" KeyDown="InstantSaveText" TextChanged="txtNote_TextChanged" Margin="0,35,0,0" Grid.RowSpan="2" />
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <Button x:Name="btnColorGreen" VerticalAlignment="Top" Height="10" Width="10" Background="#FF3FEC0C" Click="btnColorGreen_Click" Margin="0,0,6,0"/>
+            <Button x:Name="btnColorYellow" VerticalAlignment="Top" Height="10" Width="10" Background="#FFC3EA13" Click="btnColorYellow_Click" Margin="0,0,6,0"/>
+            <Button x:Name="btnColorBlue" VerticalAlignment="Top" Height="10" Width="10" Background="#FF117BE0" Click="btnColorBlue_Click" Margin="0,0,6,0"/>
+            <Button x:Name="btnColorOrange" VerticalAlignment="Top" Height="10" Width="10" Background="#FFE4A418" Click="btnColorOrange_Click" Margin="0,0,6,0"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" >
+            <Button x:Name="btnLetterDown" Content="A" VerticalAlignment="Top" Height="20" Width="20" Background="#FFABBF2B" Click="btnLetterDown_Click" Margin="0,0,6,0" FontSize="8" />
+            <Button x:Name="btnLetterUp" Content="A" VerticalAlignment="Top" Height="20" Width="20" Background="#FFABBF2B" Click="btnLetterUp_Click" Margin="0,0,6,0" FontSize="12"/>
+        </StackPanel>
+
+
+        <TextBox x:Name="txtNote" HorizontalAlignment="Center" Height="Auto" Width="320" BorderThickness="0" TextWrapping="Wrap" Text="..."  Background="{x:Null}" Foreground="#FF80DE5D" FontSize="18" AcceptsReturn="true" KeyDown="InstantSaveText" TextChanged="txtNote_TextChanged" Margin="0,35,0,0" Grid.RowSpan="2" Grid.ColumnSpan="3" />
     </Grid>
 </Window>
