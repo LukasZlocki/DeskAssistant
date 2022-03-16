@@ -3,6 +3,7 @@ using DeskAssistant.Services.Note_Service;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace DeskAssistant.Windows.NoteWindows
 {
@@ -102,9 +103,6 @@ namespace DeskAssistant.Windows.NoteWindows
 
 
         #region Buttons - change font size
-
-        // ToDo: Code buttons with font size
-
         private void btnLetterDown_Click(object sender, RoutedEventArgs e)
         {
             SetFontSizeOfNote("DOWN");
@@ -119,7 +117,6 @@ namespace DeskAssistant.Windows.NoteWindows
             RefreshScreen(_noteCard);
             SaveNoteCardToDatabase(_noteCard);
         }
-
         #endregion
 
 
@@ -128,30 +125,87 @@ namespace DeskAssistant.Windows.NoteWindows
 
         private void btnColorGreen_Click(object sender, RoutedEventArgs e)
         {
-
+            SetColorForNote("DARK");
         }
 
         private void btnColorYellow_Click(object sender, RoutedEventArgs e)
         {
-
+            SetColorForNote("YELLOW");
         }
 
         private void btnColorBlue_Click(object sender, RoutedEventArgs e)
         {
-
+            SetColorForNote("BLUE");
         }
 
         private void btnColorOrange_Click(object sender, RoutedEventArgs e)
         {
-
+            SetColorForNote("ORANGE");
         }
 
         #endregion
 
 
 
-        #region Set Font Size
+        #region
 
+        private void SetColorForNote(string color)
+        {
+            byte _r = 00;
+            byte _g = 00;
+            byte _b = 00;
+
+            byte _r1 = 64;
+            byte _g1 = 64;
+            byte _b1 = 64;
+
+            switch (color)
+            {
+                case "DARK":
+                    _r = 64;
+                    _g = 64;
+                    _b = 64;
+                    break;
+
+                case "YELLOW":
+                    _r = 195;
+                    _g = 234;
+                    _b = 19;
+                    break;
+
+                case "BLUE":
+                    _r = 17;
+                    _g = 123;
+                    _b = 224;
+                    break;
+
+                case "ORANGE":
+                    _r = 228;
+                    _g = 184;
+                    _b = 24;
+                    break;
+            }
+
+            LinearGradientBrush myLinearGradientBrush = new LinearGradientBrush();
+            myLinearGradientBrush.StartPoint = new Point(0.5, 0);
+            myLinearGradientBrush.EndPoint = new Point(0.5, 1);
+
+            myLinearGradientBrush.GradientStops.Add(new GradientStop(Color.FromRgb(_r1, _g1, _b1), 1));
+            myLinearGradientBrush.GradientStops.Add(new GradientStop(Color.FromRgb(_r, _g, _b), 0));
+
+            Point startPoint = new Point(0.5, 0);
+            Point endPoint = new Point(0.5, 1);
+
+            RectangleMain.Fill = myLinearGradientBrush;
+
+            // ToDo : code saving color settings to database  
+            //SaveNoteCardToDatabase(NoteCard noteCard);
+        }
+
+        #endregion
+
+
+        #region Set Font Size
         private void SetFontSizeOfNote(string command)
         {
             double _changedFontSize = 0.0;

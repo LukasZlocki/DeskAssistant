@@ -48,7 +48,7 @@
             <Button x:Name="btnCloseNote" Content="" Height="15" Width="15" Opacity="0.4" Background="#b11515" Click="btnCloseNote_Click" Margin="0,0,10,0" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" >
-            <Button x:Name="btnColorGreen" VerticalAlignment="Top" Height="10" Width="10" Background="#FF3FEC0C" Click="btnColorGreen_Click" Margin="0,0,6,0"/>
+            <Button x:Name="btnColorGreen" VerticalAlignment="Top" Height="10" Width="10" Background="#5b5b5b" Click="btnColorGreen_Click" Margin="0,0,6,0"/>
             <Button x:Name="btnColorYellow" VerticalAlignment="Top" Height="10" Width="10" Background="#FFC3EA13" Click="btnColorYellow_Click" Margin="0,0,6,0"/>
             <Button x:Name="btnColorBlue" VerticalAlignment="Top" Height="10" Width="10" Background="#FF117BE0" Click="btnColorBlue_Click" Margin="0,0,6,0"/>
             <Button x:Name="btnColorOrange" VerticalAlignment="Top" Height="10" Width="10" Background="#FFE4A418" Click="btnColorOrange_Click" Margin="0,0,6,0"/>
