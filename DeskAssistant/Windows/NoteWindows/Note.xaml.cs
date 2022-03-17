@@ -25,7 +25,7 @@ namespace DeskAssistant.Windows.NoteWindows
 
             InitializeComponent();
             
-            NoteWindowInit(_noteCard);
+            NoteWindowRefresh(_noteCard);
         }
         
         // constructor #2
@@ -35,7 +35,7 @@ namespace DeskAssistant.Windows.NoteWindows
         }
 
 
-        public void NoteWindowInit(NoteCard _note)
+        public void NoteWindowRefresh(NoteCard _note)
         {
             // set fontSize
             txtNote.FontSize = _note.noteProperty.FontSize;
@@ -47,7 +47,26 @@ namespace DeskAssistant.Windows.NoteWindows
             this.Top = _note.notePossition.Ypos;
             this.Left = _note.notePossition.Xpos;
 
-            
+            // set window color
+            byte _r1 = 64;
+            byte _g1 = 64;
+            byte _b1 = 64;
+
+            byte _r = _note.noteProperty.Color_r;
+            byte _g = _note.noteProperty.Color_g;
+            byte _b = _note.noteProperty.Color_b;
+
+            LinearGradientBrush myLinearGradientBrush = new LinearGradientBrush();
+            myLinearGradientBrush.StartPoint = new Point(0.5, 0);
+            myLinearGradientBrush.EndPoint = new Point(0.5, 1);
+
+            myLinearGradientBrush.GradientStops.Add(new GradientStop(Color.FromRgb(_r1, _g1, _b1), 1));
+            myLinearGradientBrush.GradientStops.Add(new GradientStop(Color.FromRgb(_r, _g, _b), 0));
+
+            Point startPoint = new Point(0.5, 0);
+            Point endPoint = new Point(0.5, 1);
+
+            RectangleMain.Fill = myLinearGradientBrush;
         }
 
 
@@ -121,35 +140,31 @@ namespace DeskAssistant.Windows.NoteWindows
 
 
         #region Buttons - change note colour
-        // ToDo: Code buttons to change note color
 
         private void btnColorGreen_Click(object sender, RoutedEventArgs e)
         {
-            SetColorForNote("DARK");
+            SetColorForNoteAndRefreshWindow("DARK");
         }
 
         private void btnColorYellow_Click(object sender, RoutedEventArgs e)
         {
-            SetColorForNote("YELLOW");
+            SetColorForNoteAndRefreshWindow("YELLOW");
         }
 
         private void btnColorBlue_Click(object sender, RoutedEventArgs e)
         {
-            SetColorForNote("BLUE");
+            SetColorForNoteAndRefreshWindow("BLUE");
         }
 
         private void btnColorOrange_Click(object sender, RoutedEventArgs e)
         {
-            SetColorForNote("ORANGE");
+            SetColorForNoteAndRefreshWindow("ORANGE");
         }
 
         #endregion
 
 
-
-        #region
-
-        private void SetColorForNote(string color)
+        private void SetColorForNoteAndRefreshWindow(string color)
         {
             byte _r = 00;
             byte _g = 00;
@@ -185,24 +200,15 @@ namespace DeskAssistant.Windows.NoteWindows
                     _b = 24;
                     break;
             }
+            // set colour to object
+            _noteCard.noteProperty.SetNoteCardColors(_r, _g, _b);
 
-            LinearGradientBrush myLinearGradientBrush = new LinearGradientBrush();
-            myLinearGradientBrush.StartPoint = new Point(0.5, 0);
-            myLinearGradientBrush.EndPoint = new Point(0.5, 1);
+            // refresh window
+            NoteWindowRefresh(_noteCard);
 
-            myLinearGradientBrush.GradientStops.Add(new GradientStop(Color.FromRgb(_r1, _g1, _b1), 1));
-            myLinearGradientBrush.GradientStops.Add(new GradientStop(Color.FromRgb(_r, _g, _b), 0));
-
-            Point startPoint = new Point(0.5, 0);
-            Point endPoint = new Point(0.5, 1);
-
-            RectangleMain.Fill = myLinearGradientBrush;
-
-            // ToDo : code saving color settings to database  
-            //SaveNoteCardToDatabase(NoteCard noteCard);
+            // save color settings to database
+            SaveNoteCardToDatabase(_noteCard);
         }
-
-        #endregion
 
 
         #region Set Font Size
