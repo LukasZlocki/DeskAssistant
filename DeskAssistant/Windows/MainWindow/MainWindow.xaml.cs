@@ -2,6 +2,7 @@
 using DeskAssistant.Models.StickyNote;
 using DeskAssistant.Services.Note_Service;
 using DeskAssistant.Windows.NoteWindows;
+using Services.DeskAssistant.DataBaseEngine;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -14,6 +15,9 @@ namespace DeskAssistant
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Service
+        private readonly LocalFilesEngine positionService = new LocalFilesEngine();
+
         // this form position parameters
         WindowPosition thisWindowPosition = new WindowPosition();
 
@@ -25,10 +29,13 @@ namespace DeskAssistant
         {
             InitializeComponent();
 
+            // positioning of this window
+            thisWindowPosition = positionService.ReadMainWindowPosition();
+            SetThisWindowPosition(thisWindowPosition);
+
             // initializing
             NoteWindowsInitializer();
         }
-
 
 
         private void btnAddNote_Click(object sender, RoutedEventArgs e)
@@ -74,8 +81,12 @@ namespace DeskAssistant
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
 
-            thisWindowPosition.fpSetYPos(this.Left);
-            thisWindowPosition.fpSetYPos(this.Top);
+            thisWindowPosition.Xpos = this.Left;
+            thisWindowPosition.Ypos = this.Top;
+
+            // update this window possition in database
+            // ToDo: code update this wind pos in database
+            positionService.UpdateMainWindowPosition(thisWindowPosition);
         }
 
 
@@ -107,6 +118,14 @@ namespace DeskAssistant
         }
 
         #endregion
+
+
+        private void SetThisWindowPosition(WindowPosition _position)
+        {
+            this.Left = _position.Xpos;
+            this.Top = _position.Ypos;
+        }
+
 
 
     }
