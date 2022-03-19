@@ -21,6 +21,13 @@ namespace DeskAssistant.Services.Note_Service
             return service;
         }
 
+        // READ
+        public List<int> GetAllNoteIds()
+        {
+            var service = _dbEngine.ReadAllNoteIds();
+            return service;
+        }
+
         // UPDATE
         public void UpdateNote(NoteCard note)
         {
@@ -33,6 +40,6 @@ namespace DeskAssistant.Services.Note_Service
             throw new NotImplementedException();
         }
 
-  
+       
     }
 }

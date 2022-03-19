@@ -9,7 +9,7 @@ namespace DeskAssistant.Services.Note_Service
         
         // READ
         public List<NoteCard> GetAllNotes();
-
+        public List<int> GetAllNoteIds();
 
         // UPDATE
         public void UpdateNote(NoteCard note);
