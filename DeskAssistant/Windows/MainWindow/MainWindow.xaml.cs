@@ -18,7 +18,7 @@ namespace DeskAssistant
         // Service
         private readonly LocalFilesEngine positionService = new LocalFilesEngine();
 
-        // this form position parameters
+        // This form position parameters
         WindowPosition thisWindowPosition = new WindowPosition();
 
         // Windows objects list
@@ -29,15 +29,16 @@ namespace DeskAssistant
         {
             InitializeComponent();
 
-            // positioning of this window
+            // Positioning of this window
             thisWindowPosition = positionService.ReadMainWindowPosition();
             SetThisWindowPosition(thisWindowPosition);
 
-            // initializing
+            // Initializing notes
             NoteWindowsInitializer();
         }
 
 
+        #region Buttons
         private void btnAddNote_Click(object sender, RoutedEventArgs e)
         {
             int _id = RenderId();
@@ -73,7 +74,10 @@ namespace DeskAssistant
             this.Close();
         }
 
+        #endregion
 
+
+        #region Positioning of main window
 
         // Moving This form by mouse    
         private void Grid_MouseDown_1(object sender, MouseButtonEventArgs e)
@@ -85,19 +89,16 @@ namespace DeskAssistant
             thisWindowPosition.Ypos = this.Top;
 
             // update this window possition in database
-            // ToDo: code update this wind pos in database
             positionService.UpdateMainWindowPosition(thisWindowPosition);
         }
 
-
-        // Rendering Id number
-        private int RenderId()
+        private void SetThisWindowPosition(WindowPosition _position)
         {
-            // ToDo : check id nb to avoid duplication of ids 
-            Random random = new Random();
-            int _id = random.Next(0, 10000);
-            return _id;
+            this.Left = _position.Xpos;
+            this.Top = _position.Ypos;
         }
+
+        #endregion
 
 
         #region Initializing of windows
@@ -109,23 +110,24 @@ namespace DeskAssistant
             // load all notes
             _noteList = _nService.GetAllNotes();
 
-            foreach(var note in _noteList)
+            foreach (var note in _noteList)
             {
                 Note _noteWindow = new Note(note);
                 _noteWindow.Show();
             }
-            
-        }
 
+        }
         #endregion
 
 
-        private void SetThisWindowPosition(WindowPosition _position)
+        // Rendering Id number
+        private int RenderId()
         {
-            this.Left = _position.Xpos;
-            this.Top = _position.Ypos;
+            // ToDo : check id nb to avoid duplication of ids 
+            Random random = new Random();
+            int _id = random.Next(0, 10000);
+            return _id;
         }
-
 
 
     }
