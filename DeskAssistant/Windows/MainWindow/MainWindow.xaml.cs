@@ -15,8 +15,9 @@ namespace DeskAssistant
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Service
-        private readonly LocalFilesEngine positionService = new LocalFilesEngine();
+        // Services
+        private readonly LocalFilesEngine _positionService = new LocalFilesEngine();
+        private readonly NoteService _noteService = new NoteService();
 
         // This form position parameters
         WindowPosition thisWindowPosition = new WindowPosition();
@@ -30,7 +31,7 @@ namespace DeskAssistant
             InitializeComponent();
 
             // Positioning of this window
-            thisWindowPosition = positionService.ReadMainWindowPosition();
+            thisWindowPosition = _positionService.ReadMainWindowPosition();
             SetThisWindowPosition(thisWindowPosition);
 
             // Initializing notes
@@ -119,6 +120,20 @@ namespace DeskAssistant
         }
         #endregion
 
+
+        #region Rendering Id for new note
+
+        private int IdSetForNewNote(NoteService _noteService)
+        {
+            int _id;
+            _id = RenderId();
+
+
+
+            return _id;
+        }
+
+        #endregion
 
         // Rendering Id number
         private int RenderId()

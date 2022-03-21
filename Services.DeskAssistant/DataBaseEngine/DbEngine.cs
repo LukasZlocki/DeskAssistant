@@ -88,6 +88,17 @@ namespace DeskAssistant.Services.DataBaseEngine
         }
 
 
+        public List<int> ReadAllNoteIds()
+        {
+            List<int> _idList = new List<int>();
+            List<NoteCard> _noteCardsList = new List<NoteCard>();
+
+            
+
+
+            return _idList;
+        }
+
         private void SaveAllNotesToDatabase(List<NoteCard> notesList)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<NoteCard>));
