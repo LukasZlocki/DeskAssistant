@@ -110,7 +110,7 @@ namespace DeskAssistant.Windows.NoteWindows
         {
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
-
+            // ToDo : Bug Here ??
             _noteCard.notePossition.Xpos = this.Left;
             _noteCard.notePossition.Ypos = this.Top;
 
@@ -118,7 +118,6 @@ namespace DeskAssistant.Windows.NoteWindows
         }
 
         #endregion
-
 
 
         #region Buttons - change font size

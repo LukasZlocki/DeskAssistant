@@ -93,9 +93,10 @@ namespace DeskAssistant.Services.DataBaseEngine
             List<int> _idList = new List<int>();
             List<NoteCard> _noteCardsList = new List<NoteCard>();
 
-            
-
-
+            foreach(var note in _noteCardsList)
+            {
+                _idList.Add(note.Id);
+            }
             return _idList;
         }
 

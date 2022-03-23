@@ -42,7 +42,7 @@ namespace DeskAssistant
         #region Buttons
         private void btnAddNote_Click(object sender, RoutedEventArgs e)
         {
-            int _id = RenderId();
+            int _id = SetIdForNewNote(_noteService);
 
             Note note = new Note();
             note._noteCard.Id = _id; // set new id for note window and card
@@ -90,7 +90,7 @@ namespace DeskAssistant
             thisWindowPosition.Ypos = this.Top;
 
             // update this window possition in database
-            positionService.UpdateMainWindowPosition(thisWindowPosition);
+            _positionService.UpdateMainWindowPosition(thisWindowPosition);
         }
 
         private void SetThisWindowPosition(WindowPosition _position)
@@ -103,6 +103,7 @@ namespace DeskAssistant
 
 
         #region Initializing of windows
+
         public void NoteWindowsInitializer()
         {
             NoteService _nService = new NoteService();
@@ -118,31 +119,46 @@ namespace DeskAssistant
             }
 
         }
+
         #endregion
 
 
         #region Rendering Id for new note
 
-        private int IdSetForNewNote(NoteService _noteService)
+        private int SetIdForNewNote(NoteService _noteService)
         {
             int _id;
-            _id = RenderId();
+            List<int> _idsList;
+            bool _idDoubled = false;
 
+            do
+            {
+                // generate new id
+                _id = RenderId();
+                // code getting all ids from database
+                _idsList = _noteService.GetAllNoteIds();
 
-
+                // code checking if id exists
+                foreach (int id in _idsList)
+                {
+                    if (id == _id)
+                    {
+                        _idDoubled = true;
+                    }
+                }
+              // if nok render id again if OK return new id
+            } while (_idDoubled == true);
             return _id;
         }
 
-        #endregion
-
-        // Rendering Id number
         private int RenderId()
         {
-            // ToDo : check id nb to avoid duplication of ids 
             Random random = new Random();
             int _id = random.Next(0, 10000);
             return _id;
         }
+
+        #endregion
 
 
     }
