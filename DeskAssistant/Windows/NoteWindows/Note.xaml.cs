@@ -16,6 +16,7 @@ namespace DeskAssistant.Windows.NoteWindows
         // Service
         private NoteService _noteService = new NoteService();
 
+        // main note card object
         public NoteCard _noteCard = new NoteCard();
         
         // constructor #1
@@ -36,49 +37,10 @@ namespace DeskAssistant.Windows.NoteWindows
         }
 
 
-        public void NoteWindowRefresh(NoteCard _note)
-        {
-            // set fontSize
-            txtNote.FontSize = _note.noteProperty.FontSize;
-
-            // set text
-            txtNote.Text = _note.NoteText;
-
-            // set window position
-            this.Top = _note.notePossition.Ypos;
-            this.Left = _note.notePossition.Xpos;
-
-            // set window color
-            byte _r1 = 64;
-            byte _g1 = 64;
-            byte _b1 = 64;
-
-            byte _r = _note.noteProperty.Color_r;
-            byte _g = _note.noteProperty.Color_g;
-            byte _b = _note.noteProperty.Color_b;
-
-            LinearGradientBrush myLinearGradientBrush = new LinearGradientBrush();
-            myLinearGradientBrush.StartPoint = new Point(0.5, 0);
-            myLinearGradientBrush.EndPoint = new Point(0.5, 1);
-
-            myLinearGradientBrush.GradientStops.Add(new GradientStop(Color.FromRgb(_r1, _g1, _b1), 1));
-            myLinearGradientBrush.GradientStops.Add(new GradientStop(Color.FromRgb(_r, _g, _b), 0));
-
-            Point startPoint = new Point(0.5, 0);
-            Point endPoint = new Point(0.5, 1);
-
-            RectangleMain.Fill = myLinearGradientBrush;
-        }
-
 
         private void RectangleTitle_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
-        }
-
-        private void btnCloseNote_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
 
         private void txtNote_TextChanged(object sender, TextChangedEventArgs e)
@@ -170,6 +132,15 @@ namespace DeskAssistant.Windows.NoteWindows
         #endregion
 
 
+        #region Buttons - Close note card
+        private void btnCloseNote_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        #endregion
+
+
+        #region Set Window Color
         private void SetColorForNoteAndRefreshWindow(string color)
         {
             byte _r = 00;
@@ -215,6 +186,7 @@ namespace DeskAssistant.Windows.NoteWindows
             // save color settings to database
             SaveNoteCardToDatabase(_noteCard);
         }
+        #endregion
 
 
         #region Set Font Size
@@ -237,12 +209,52 @@ namespace DeskAssistant.Windows.NoteWindows
 
         #endregion
 
+
+        #region Screen refresh
         private void RefreshScreen(NoteCard note)
         {
             txtNote.Text = note.NoteText;
             txtNote.FontSize = note.noteProperty.FontSize;
         }
 
+        public void NoteWindowRefresh(NoteCard _note)
+        {
+            // set fontSize
+            txtNote.FontSize = _note.noteProperty.FontSize;
+
+            // set text
+            txtNote.Text = _note.NoteText;
+
+            // set window position
+            this.Top = _note.notePossition.Ypos;
+            this.Left = _note.notePossition.Xpos;
+
+            // set window color
+            byte _r1 = 64;
+            byte _g1 = 64;
+            byte _b1 = 64;
+
+            byte _r = _note.noteProperty.Color_r;
+            byte _g = _note.noteProperty.Color_g;
+            byte _b = _note.noteProperty.Color_b;
+
+            LinearGradientBrush myLinearGradientBrush = new LinearGradientBrush();
+            myLinearGradientBrush.StartPoint = new Point(0.5, 0);
+            myLinearGradientBrush.EndPoint = new Point(0.5, 1);
+
+            myLinearGradientBrush.GradientStops.Add(new GradientStop(Color.FromRgb(_r1, _g1, _b1), 1));
+            myLinearGradientBrush.GradientStops.Add(new GradientStop(Color.FromRgb(_r, _g, _b), 0));
+
+            Point startPoint = new Point(0.5, 0);
+            Point endPoint = new Point(0.5, 1);
+
+            RectangleMain.Fill = myLinearGradientBrush;
+        }
+
+        #endregion
+
+
+        #region Null handling
         // null handling
         private void noteCardNullCheck(ref NoteCard note)
         {
@@ -260,6 +272,8 @@ namespace DeskAssistant.Windows.NoteWindows
             }
 
         }
+        #endregion
+
 
 
     }
