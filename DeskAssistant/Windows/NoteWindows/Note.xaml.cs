@@ -1,5 +1,6 @@
 ﻿using DeskAssistant.Models.StickyNote;
 using DeskAssistant.Services.Note_Service;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -24,10 +25,10 @@ namespace DeskAssistant.Windows.NoteWindows
             noteCardNullCheck(ref _noteCard);
 
             InitializeComponent();
-            
+
             NoteWindowRefresh(_noteCard);
         }
-        
+
         // constructor #2
         public Note()
         {
@@ -108,6 +109,12 @@ namespace DeskAssistant.Windows.NoteWindows
         //  get position of noteCard window and write it to file.
         private void Grid_MouseDow_2(object sender, MouseButtonEventArgs e)
         {
+            // check if poosition object is null
+            if (_noteCard.notePossition == null)
+            {
+                noteCardNullCheck(ref _noteCard);
+            }
+
             if (e.ChangedButton == MouseButton.Left)
                 this.DragMove();
             // ToDo : Bug Here ??
@@ -234,7 +241,6 @@ namespace DeskAssistant.Windows.NoteWindows
         {
             txtNote.Text = note.NoteText;
             txtNote.FontSize = note.noteProperty.FontSize;
-
         }
 
         // null handling
