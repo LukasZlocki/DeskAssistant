@@ -7,7 +7,7 @@ namespace DeskAssistant.Services.DataBaseEngine
     {
         private static string NOTE_CARD_DB_FILE = "dbNoteCrd.xml";
 
-
+        // UPDATE
         public void UpdateNoteInDatabase(NoteCard  _note)
         {
             bool _noteUpdated = false;
@@ -33,7 +33,7 @@ namespace DeskAssistant.Services.DataBaseEngine
             SaveAllNotesToDatabase(_notesList);
         }
 
-
+        // CREATE
         public void CreateNoteInDatabase(NoteCard _note)
         {
             // read all data from db
@@ -65,6 +65,7 @@ namespace DeskAssistant.Services.DataBaseEngine
         }
 
 
+        // READ
         public List<NoteCard> ReadNotesListFromFile()
         {
             List<NoteCard> _notelist = new List<NoteCard>();
@@ -87,7 +88,7 @@ namespace DeskAssistant.Services.DataBaseEngine
             return _notelist;
         }
 
-
+        // READ
         public List<int> ReadAllNoteIds()
         {
             List<int> _idList = new List<int>();
@@ -100,6 +101,7 @@ namespace DeskAssistant.Services.DataBaseEngine
             return _idList;
         }
 
+
         private void SaveAllNotesToDatabase(List<NoteCard> notesList)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<NoteCard>));
@@ -108,7 +110,17 @@ namespace DeskAssistant.Services.DataBaseEngine
             tw.Close();
         }
 
+        // DELETE
+        public void DeleteNoteInDatabase(int id)
+        {
+            // read all data from db
+            List<NoteCard> _notesList = new List<NoteCard>();
+            _notesList = ReadNotesListFromFile();
 
+            _notesList.RemoveAll(r => r.Id == id);
+
+            SaveAllNotesToDatabase(_notesList);
+        }
 
     }
 }

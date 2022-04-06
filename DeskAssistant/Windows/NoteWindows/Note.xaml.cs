@@ -48,7 +48,7 @@ namespace DeskAssistant.Windows.NoteWindows
 
         }
 
-        #region Saving Note Card instantly
+        #region Database operations
         private void InstantSaveText(object sender, KeyEventArgs e)
         {
             NotePosition np = new NotePosition();
@@ -62,6 +62,11 @@ namespace DeskAssistant.Windows.NoteWindows
         private void SaveNoteCardToDatabase(NoteCard noteCard)
         {
             _noteService.UpdateNote(noteCard);
+        }
+
+        private void DeletNoteCardFromDatabase(int noteId)
+        {
+            _noteService.DeleteNote(noteId);
         }
 
         #endregion
@@ -134,6 +139,13 @@ namespace DeskAssistant.Windows.NoteWindows
         #region Buttons - Close note card
         private void btnCloseNote_Click(object sender, RoutedEventArgs e)
         {
+            MessageBoxResult result = MessageBox.Show("Do you want to delete and close this note?", "Note - Message", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                this.Close();
+                DeletNoteCardFromDatabase(_noteCard.Id);
+            }
+
             this.Close();
         }
         #endregion

@@ -35,9 +35,9 @@ namespace DeskAssistant.Services.Note_Service
         }
 
         // DELETE
-        public void DeleteNote(NoteCard note)
+        public void DeleteNote(int id)
         {
-            throw new NotImplementedException();
+            _dbEngine.DeleteNoteInDatabase(id);
         }
 
        
