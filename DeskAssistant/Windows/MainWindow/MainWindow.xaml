@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DeskAssistant"
         mc:Ignorable="d"
-        Title="Office Assistant" Height="100" Width="80" WindowStyle="None" AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize">
+        Title="Desk Assistant" Height="70" Width="80" WindowStyle="None" AllowsTransparency="True" Background="Transparent" ResizeMode="NoResize">
     <Grid MouseDown="Grid_MouseDown_1" >
         <Rectangle RadiusY="5" RadiusX="5" Stroke="Black" StrokeThickness="0" Opacity="0.75">
             <Rectangle.Fill>
@@ -32,14 +32,15 @@
                 <Button x:Name="btnAddNote" Content="Note" HorizontalAlignment="Center" VerticalAlignment="Top" Width="57" Height="25" Click="btnAddNote_Click" Background="#3C3C3C" BorderThickness="0" />
                 <Button x:Name="btnCloseAndShowNotes" HorizontalAlignment="Center" VerticalAlignment="Center" Width="10" Height="10" Click="btnCloseAndShowNotes_Click" Background="#3C3C3C" BorderThickness="0" />
             </StackPanel>
-
+            
+             <!--- Future feature
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="btnAddTask" Content="Task" HorizontalAlignment="center" VerticalAlignment="Top" Width="57" Height="25" Click="btnAddTask_Click" Background="#3C3C3C" BorderThickness="0" />
                 <Button x:Name="btnCloseAndShowTasks" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="10" Height="10" Click="btnCloseAndShowTasks_Click" Background="#3C3C3C" BorderThickness="0" />
             </StackPanel>
-                  
-            <Label x:Name="lblDescription1" Content="Office Assistant v1.0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="20" FontSize="7" Foreground="Black" />
-                                
+            -->
+            <Label x:Name="lblDescription1" HorizontalAlignment="Center" Content="Desk Assistant " Height="20" FontSize="7" Foreground="Black" />
+
         </StackPanel>
 
       
