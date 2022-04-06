@@ -72,7 +72,8 @@ namespace DeskAssistant
         // Closing this window
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            // closing all windows with note along with MainWindow
+            Environment.Exit(0);
         }
 
         #endregion
