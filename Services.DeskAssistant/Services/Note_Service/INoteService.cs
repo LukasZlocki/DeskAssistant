@@ -15,7 +15,7 @@ namespace DeskAssistant.Services.Note_Service
         public void UpdateNote(NoteCard note);
 
         // DELETE
-        public void DeleteNote(NoteCard note);
+        public void DeleteNote(int id);
 
     }
 }
