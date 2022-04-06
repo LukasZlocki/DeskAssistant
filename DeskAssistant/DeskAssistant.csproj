@@ -5,7 +5,13 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <ApplicationIcon>da.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="da.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Models.DeskAssistant\Models.DeskAssistant.csproj" />
