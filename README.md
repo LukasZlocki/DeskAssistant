@@ -10,7 +10,7 @@ At the end it serves as my daily tool at work and at home to cover my needs with
 ## Branches
 
 * main branch consist newest release.
-* release/{number} branch covers all releases.
+* release_{number} branch cover release with number {number}.
 * other branches according to its description
 
 ## Technologies Used
