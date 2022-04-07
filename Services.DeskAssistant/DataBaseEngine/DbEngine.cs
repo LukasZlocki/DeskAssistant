@@ -7,33 +7,7 @@ namespace DeskAssistant.Services.DataBaseEngine
     {
         private static string NOTE_CARD_DB_FILE = "dbNoteCrd.xml";
 
-
-        public void UpdateNoteInDatabase(NoteCard  _note)
-        {
-            bool _noteUpdated = false;
-            List<NoteCard> _notesList = new List<NoteCard>();
-            _notesList = ReadNotesListFromFile();
-            foreach (var note in _notesList)
-            {
-                if (note.Id == _note.Id)
-                {
-                    note.NoteText = _note.NoteText;
-                    note.notePossition = _note.notePossition;
-                    note.noteProperty = _note.noteProperty;
-                    _noteUpdated = true;
-                }
-            }
-
-            // if no note with id then add note to lis
-            if (_noteUpdated == false)
-            {
-                _notesList.Add(_note);
-            }
-
-            SaveAllNotesToDatabase(_notesList);
-        }
-
-
+        // CREATE
         public void CreateNoteInDatabase(NoteCard _note)
         {
             // read all data from db
@@ -64,7 +38,7 @@ namespace DeskAssistant.Services.DataBaseEngine
             SaveAllNotesToDatabase(_notesList);
         }
 
-
+        // READ
         public List<NoteCard> ReadNotesListFromFile()
         {
             List<NoteCard> _notelist = new List<NoteCard>();
@@ -87,7 +61,59 @@ namespace DeskAssistant.Services.DataBaseEngine
             return _notelist;
         }
 
+        // READ
+        public List<int> ReadAllNoteIds()
+        {
+            List<int> _idList = new List<int>();
+            List<NoteCard> _noteCardsList = new List<NoteCard>();
 
+            foreach(var note in _noteCardsList)
+            {
+                _idList.Add(note.Id);
+            }
+            return _idList;
+        }
+
+        // UPDATE
+        public void UpdateNoteInDatabase(NoteCard _note)
+        {
+            bool _noteUpdated = false;
+            List<NoteCard> _notesList = new List<NoteCard>();
+            _notesList = ReadNotesListFromFile();
+            foreach (var note in _notesList)
+            {
+                if (note.Id == _note.Id)
+                {
+                    note.NoteText = _note.NoteText;
+                    note.notePossition = _note.notePossition;
+                    note.noteProperty = _note.noteProperty;
+                    _noteUpdated = true;
+                }
+            }
+
+            // if no note with id then add note to lis
+            if (_noteUpdated == false)
+            {
+                _notesList.Add(_note);
+            }
+
+            SaveAllNotesToDatabase(_notesList);
+        }
+
+        // DELETE
+        public void DeleteNoteInDatabase(int id)
+        {
+            // read all data from db
+            List<NoteCard> _notesList = new List<NoteCard>();
+            _notesList = ReadNotesListFromFile();
+
+            _notesList.RemoveAll(r => r.Id == id);
+
+            SaveAllNotesToDatabase(_notesList);
+        }
+
+
+        // Db operations SAVE
         private void SaveAllNotesToDatabase(List<NoteCard> notesList)
         {
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<NoteCard>));
@@ -95,7 +121,6 @@ namespace DeskAssistant.Services.DataBaseEngine
             xmlSerializer.Serialize(tw, notesList);
             tw.Close();
         }
-
 
 
     }
